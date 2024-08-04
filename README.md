@@ -75,4 +75,4 @@ sudo apt-get -y install libffi-dev
 pyenv uninstall 3.10.14
 ```
 
-[Install again Python 3.10.14](#python-31014)
+[Install again Python 3.10.14](#python-31014-ubuntu)
