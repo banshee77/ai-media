@@ -1,0 +1,25 @@
+@startuml
+skinparam nodesep 20
+skinparam ranksep 20
+
+participant "User" as User
+participant "Streamlit" as Streamlit
+participant "Audio Transcriber" as Audio
+participant "Text Embedding" as Text
+participant "Qdrant (Vector DB)" as Qdrant
+participant "Ollama (LLM)" as OLLAMA
+participant "Context builder" as Context
+
+User ->> Streamlit: Provide YouTube link
+Streamlit ->> Audio: Transcribe Video to MP3
+Audio ->> Text: Transcribe Audio to Text
+Text ->> Qdrant: Store Text
+
+User ->> Streamlit: Ask a question related to uploaded YouTube video
+Streamlit ->> Qdrant: Similarity search
+Qdrant ->> Context: Send relevant documents and question
+Context ->> OLLAMA: Send context and question
+OLLAMA ->> Streamlit: Generate response
+Streamlit ->> User: Display response
+
+@enduml
